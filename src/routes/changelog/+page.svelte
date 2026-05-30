@@ -1,7 +1,9 @@
 <script lang="ts">
-  import ExternalLink from '@lucide/svelte/icons/external-link';
-  import ChangelogToc from '$lib/components/changelog-toc.svelte';
-  import type { PageData } from './$types.js';
+  import ChangelogToc from "$lib/components/changelog-toc.svelte";
+  import SeoHead from "$lib/components/seo-head.svelte";
+  import { buildBreadcrumbJsonLd, buildSeo } from "$lib/seo.js";
+  import ExternalLink from "@lucide/svelte/icons/external-link";
+  import type { PageData } from "./$types.js";
 
   let { data }: { data: PageData } = $props();
 
@@ -9,13 +11,25 @@
   const doc = $derived(data.metadata);
   const toc = $derived(doc.toc ?? []);
 
+  const seo = $derived(
+    buildSeo({
+      title: "Changelog | Pocket ID",
+      description: doc.description,
+      type: "article",
+    }),
+  );
+
+  const breadcrumbJsonLd = $derived(
+    buildBreadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Changelog", path: "/changelog" },
+    ]),
+  );
+
   const githubEditUrl = $derived(`https://github.com/pocket-id/website/edit/main/docs/${doc.path}.md`);
 </script>
 
-<svelte:head>
-  <title>{doc.title}</title>
-  <meta name="description" content={doc.description} />
-</svelte:head>
+<SeoHead {seo} jsonLd={[breadcrumbJsonLd]} />
 
 <div class="container mx-auto flex min-w-0 flex-1 px-4 py-6 lg:py-8">
   <div class="mx-auto flex w-full max-w-6xl gap-8">

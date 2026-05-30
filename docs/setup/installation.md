@@ -24,7 +24,7 @@ You can use a reverse proxy like [Caddy](https://caddyserver.com/) or [NGINX](ht
 2. Edit the `.env` file so that it fits your needs. See the [environment variables](/docs/configuration/environment-variables) section for more information.
 3. Run `docker compose up -d`
 
-You can now sign in with the admin account on `https://<your-app-url>/setup`.
+Create an admin account on `https://<your-app-url>/setup`.
 
 ### Stand-alone Installation
 
@@ -60,12 +60,63 @@ You can now sign in with the admin account on `https://<your-app-url>/setup`.
    ./pocket-id
    ```
 
-You can now sign in with the admin account on `https://<your-app-url>/setup`.
+Create an admin account on `https://<your-app-url>/setup`.
+
+## Offline usage
+
+If you are running Pocket ID in an air-gapped environment or without reliable internet access, you can disable external requests by setting the following environment variables:
+
+- `VERSION_CHECK_DISABLED=true`: Disables the automatic version check against GitHub.
+- `ANALYTICS_DISABLED=true`: Disables the daily heartbeat request to the analytics server.
 
 ## Community Installation Methods
 
 > [!IMPORTANT]
 > These installation methods are not officially supported, and services may not work as expected.
+
+### Podman + Quadlet
+
+For _rootless_ Podman, add the following Quadlet file at `~/.config/containers/systemd/pocket-id.container`.
+For _rootful_ Podman, move it into `/etc/containers/systemd/` instead.
+Also change the `WantedBy` value `default.target` to `multi-user.target`.
+Go through the environment variables and adjust the values as needed.
+
+```systemd
+[Container]
+Image=ghcr.io/pocket-id/pocket-id:v2
+PublishPort=1411:1411
+Volume=pocket-id:/app/data:Z
+
+# optional auto-update, requires podman-auto-update.timer
+AutoUpdate=registry
+
+# optional healthcheck
+HealthCmd=/app/pocket-id healthcheck
+HealthInterval=1m30s
+HealthTimeout=5s
+HealthRetries=2
+HealthStartPeriod=10s
+
+# Environment variables
+# See the documentation for more information:
+# https://pocket-id.org/docs/configuration/environment-variables
+
+# These variables must be configured for your deployment:
+Environment=APP_URL=https://your-pocket-id-domain.com
+# Encryption key. Generate with: openssl rand -base64 32
+# Put the base64 key in a file and point to it here.
+Environment=ENCRYPTION_KEY_FILE=/path/to/encryption_key
+
+# These variables are optional but recommended to review:
+Environment=TRUST_PROXY=false
+Environment=MAXMIND_LICENSE_KEY=
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+```
 
 ### Proxmox
 
@@ -88,6 +139,7 @@ Pocket ID is available as a template on the Community Apps store.
 
 - A Helm chart maintained by @matslarson is available [here](https://github.com/matslarson/pocket-id-helm).
 - A Helm chart maintained by anza-labs [here](https://artifacthub.io/packages/helm/anza-labs/pocket-id).
+- A Kubernetes Operator maintained by @aclerici38 [here](https://github.com/aclerici38/pocket-id-operator).
 
 ### NixOS
 
@@ -100,6 +152,12 @@ It can be enabled by adding the following to your `configuration.nix`:
 
 For further configuration of the module, see the available [settings](https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=pocket-id).
 
+### Homebrew
+
+   ```bash
+   brew install pocket-id
+   ```
+
 ## Installation from Source
 
 It's not recommended to install Pocket ID from source unless you know what you're doing. The following instructions are provided for advanced users who want to customize or contribute to the project.
@@ -107,7 +165,7 @@ It's not recommended to install Pocket ID from source unless you know what you'r
 Required tools:
 
 - [Node.js](https://nodejs.org/en/download/) >= 22
-- [Go](https://golang.org/doc/install) >= 1.24
+- [Go](https://golang.org/doc/install) >= 1.26
 - [Git](https://git-scm.com/downloads)
 
 1. Run the following commands:
@@ -140,4 +198,4 @@ Required tools:
 ./pocket-id
 ```
 
-You can now sign in with the admin account on `https://<your-app-url>/setup`.
+Create an admin account on `https://<your-app-url>/setup`.

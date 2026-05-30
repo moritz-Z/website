@@ -3,6 +3,225 @@ title: 'Changelog'
 description: 'Release notes for pocket-id'
 ---
 
+## v2.7.0 - 2026-05-11
+
+[Release](https://github.com/pocket-id/pocket-id/releases/tag/v2.7.0)
+
+
+### Bug Fixes
+
+- add `_FILE` support for `S3_SECRET_ACCESS_KEY_FILE` env var ([#1452](https://github.com/pocket-id/pocket-id/pull/1452) by @ItalyPaleAle)
+- invalidate cache when changing image ([#1462](https://github.com/pocket-id/pocket-id/pull/1462) by @GameTec-live)
+- fall back to Basic auth when PKCE puts client_id in body ([#1466](https://github.com/pocket-id/pocket-id/pull/1466) by @mgabor3141)
+
+### Documentation
+
+- add missing /api prefix to app config swagger routes ([#1454](https://github.com/pocket-id/pocket-id/pull/1454) by @aclerici38)
+
+### Features
+
+- add support for response_mode=form_post ([#1360](https://github.com/pocket-id/pocket-id/pull/1360) by @Johnwulp)
+- add support for "select_account" prompt ([#1453](https://github.com/pocket-id/pocket-id/pull/1453) by @ItalyPaleAle)
+
+### Other
+
+- add script to update deps ([f9f93f0](https://github.com/pocket-id/pocket-id/commit/f9f93f0ef164426d4d4cfb58fcf59ce30b686130) by @stonith404)
+- upgrade dependencies ([20df033](https://github.com/pocket-id/pocket-id/commit/20df033c1fc3d737927447206b4f5e65d3ab4a40) by @stonith404)
+- post dependency upgrade fixes ([e33a9b8](https://github.com/pocket-id/pocket-id/commit/e33a9b8c888988f7b2e6c500e72d53b57db01f34) by @stonith404)
+- migrate github actions runners to depot  runners ([#1329](https://github.com/pocket-id/pocket-id/pull/1329) by @kmendell)
+- fix caching of ldap-cli e2e tests docker build ([#1457](https://github.com/pocket-id/pocket-id/pull/1457) by @kmendell)
+- fix incorrect container name variable ([5c7e5f6](https://github.com/pocket-id/pocket-id/commit/5c7e5f680bb70d3056b11f1a33669cc4bd9a1e17) by @kmendell)
+
+**Full Changelog**: https://github.com/pocket-id/pocket-id/compare/v2.6.2...v2.7.0
+
+
+## v2.6.2 - 2026-04-21
+
+[Release](https://github.com/pocket-id/pocket-id/releases/tag/v2.6.2)
+
+
+### Bug Fixes
+
+- return correct byte count in HEAD request writer ([#1443](https://github.com/pocket-id/pocket-id/pull/1443) by @ahampal)
+- improve keyboard navigation and screen-reader labels ([#1445](https://github.com/pocket-id/pocket-id/pull/1445) by @bjoernch)
+
+### Other
+
+- upgrade to vite 8.0 and pnpm 10.33.0 ([#1446](https://github.com/pocket-id/pocket-id/pull/1446) by @kmendell)
+
+**Full Changelog**: https://github.com/pocket-id/pocket-id/compare/v2.6.1...v2.6.2
+
+
+## v2.6.1 - 2026-04-21
+
+[Release](https://github.com/pocket-id/pocket-id/releases/tag/v2.6.1)
+
+
+### Bug Fixes
+
+- restore login screen background from not showing up ([975d3c7](https://github.com/pocket-id/pocket-id/commit/975d3c79c6a882291c69b31d25bfcd8b7896528c) by @kmendell)
+
+### Other
+
+- ignore webauthn type for swagger generation ([ce4b89d](https://github.com/pocket-id/pocket-id/commit/ce4b89da650f025747fd0dd45eab5cebe29f5a93) by @kmendell)
+- update golangci-lint ([#1440](https://github.com/pocket-id/pocket-id/pull/1440) by @ItalyPaleAle)
+- Add catalan language ([#1436](https://github.com/pocket-id/pocket-id/pull/1436) by @mcasellas)
+
+**Full Changelog**: https://github.com/pocket-id/pocket-id/compare/v2.6.0...v2.6.1
+
+
+## v2.6.0 - 2026-04-19
+
+[Release](https://github.com/pocket-id/pocket-id/releases/tag/v2.6.0)
+
+
+### Bug Fixes
+
+- disable callback URLs with protocols "javascript" and "data" ([#1397](https://github.com/pocket-id/pocket-id/pull/1397) by @ItalyPaleAle)
+- strip Root prefix from S3 List() returned paths ([#1413](https://github.com/pocket-id/pocket-id/pull/1413) by @vtmocanu)
+- use valid Tailwind v4 transition class for auth animation squares ([#1415](https://github.com/pocket-id/pocket-id/pull/1415) by @CoolShades)
+- resolve posixGroup memberUid as bare usernames ([#1422](https://github.com/pocket-id/pocket-id/pull/1422) by @gucong3000)
+- prevent flickering if no background image is set on login page ([027e6f0](https://github.com/pocket-id/pocket-id/commit/027e6f078da0eec712ae22a04b37c86110cb262b) by @stonith404)
+- improve form input layout if description next to it is multi col ([9ec4683](https://github.com/pocket-id/pocket-id/commit/9ec4683d18036ba1945bffd4bce14ec4c2dff7f9) by @stonith404)
+- access token renewal bypasses important checks ([978ac87](https://github.com/pocket-id/pocket-id/commit/978ac87deffec58beaccd15aead975e91b94c8a5) by @stonith404)
+
+### Features
+
+- add ability to revoke passkeys of users as admin ([#1386](https://github.com/pocket-id/pocket-id/pull/1386) by @jose-d)
+- add auth method claim (`amr`) to tokens ([#1433](https://github.com/pocket-id/pocket-id/pull/1433) by @stonith404)
+- add TLS support for HTTP/2 server ([#1429](https://github.com/pocket-id/pocket-id/pull/1429) by @IngmarStein)
+- add OpenID Connect `prompt` Parameter Handling ([#1299](https://github.com/pocket-id/pocket-id/pull/1299) by @rjaakke)
+- return not found. on `/setup` if already completed ([444f7ff](https://github.com/pocket-id/pocket-id/commit/444f7ff2b0269c12f1dba334a37d7db2007e172f) by @stonith404)
+
+### Other
+
+- update AAGUIDs ([#1403](https://github.com/pocket-id/pocket-id/pull/1403) by @github-actions[bot])
+- upgrade dependencies ([f8f7222](https://github.com/pocket-id/pocket-id/commit/f8f7222468dad90f630ae18f7c3fd78e37ba3f77) by @stonith404)
+- combobox not closed in e2e test ([fbdb93f](https://github.com/pocket-id/pocket-id/commit/fbdb93f1a768a05e6e3f2c6fd32b5de50a745bc6) by @stonith404)
+- Security upgrade alpine from latest to 3.23.4 ([#1431](https://github.com/pocket-id/pocket-id/pull/1431) by @stonith404)
+- security upgrade alpine from latest to 3.23.4 ([#1432](https://github.com/pocket-id/pocket-id/pull/1432) by @stonith404)
+- add Catalan language files ([4f09de2](https://github.com/pocket-id/pocket-id/commit/4f09de2cfc7d1e92632116821493a670fc7ee80d) by @stonith404)
+- reduce complexity of `ValidateEnvConfig` and `initRouter` ([a0cb574](https://github.com/pocket-id/pocket-id/commit/a0cb57431372c2bcc59904342597845e92a42a93) by @stonith404)
+- pass context to `shutdownServer` ([ff26c42](https://github.com/pocket-id/pocket-id/commit/ff26c4273a061b7d2c84e7b74f1e0f9e0acc6eb0) by @stonith404)
+
+**Full Changelog**: https://github.com/pocket-id/pocket-id/compare/v2.5.0...v2.6.0
+
+
+## v2.5.0 - 2026-03-26
+
+[Release](https://github.com/pocket-id/pocket-id/releases/tag/v2.5.0)
+
+### Bug Fixes
+
+- better error messages when there's another instance of Pocket ID running ([#1370](https://github.com/pocket-id/pocket-id/pull/1370) by @ItalyPaleAle)
+- move tooltip inside of form input to prevent shifting ([#1369](https://github.com/pocket-id/pocket-id/pull/1369) by @GameTec-live)
+- derive LDAP admin access from group membership ([#1374](https://github.com/pocket-id/pocket-id/pull/1374) by @kmendell)
+- avoid fmt.Sprintf on custom GeoLiteDBUrl without %s placeholder ([#1384](https://github.com/pocket-id/pocket-id/pull/1384) by @choyri)
+- show a warning when SQLite DB is stored on NFS/SMB/FUSE ([#1381](https://github.com/pocket-id/pocket-id/pull/1381) by @ItalyPaleAle)
+- empty background restore after reboot ([#1379](https://github.com/pocket-id/pocket-id/pull/1379) by @taoso)
+- allow one-char username on signup ([#1378](https://github.com/pocket-id/pocket-id/pull/1378) by @taoso)
+- separate querying LDAP and updating DB during sync ([#1371](https://github.com/pocket-id/pocket-id/pull/1371) by @ItalyPaleAle)
+
+### Features
+
+- allow use of svg, png, and ico images types for favicon ([#1289](https://github.com/pocket-id/pocket-id/pull/1289) by @taoso)
+- allow clearing background image ([#1290](https://github.com/pocket-id/pocket-id/pull/1290) by @taoso)
+- add `token_endpoint_auth_methods_supported` to `.well-known` ([#1388](https://github.com/pocket-id/pocket-id/pull/1388) by @owenvoke)
+- add TRUSTED_PLATFORM environment variable for gin ([#1372](https://github.com/pocket-id/pocket-id/pull/1372) by @choyri)
+
+### Other
+
+- add pr quality action ([e3905cf](https://github.com/pocket-id/pocket-id/commit/e3905cf3159fe0370778b0d7d3be64b4246d19be) by @stonith404)
+- bump google.golang.org/grpc from 1.79.1 to 1.79.3 in /backend in the go_modules group across 1 directory ([#1391](https://github.com/pocket-id/pocket-id/pull/1391) by @dependabot[bot])
+- Improve Latvian translations in lv.json ([#1382](https://github.com/pocket-id/pocket-id/pull/1382) by @Raito00)
+- ignore linter on app image bootstrap ([5251cd9](https://github.com/pocket-id/pocket-id/commit/5251cd97994177c96cb6f9ab3f88ca31367b5b55) by @kmendell)
+- upgrade dependencies ([e7e0176](https://github.com/pocket-id/pocket-id/commit/e7e0176316857186b9683e2f0cb0686189f86cfb) by @kmendell)
+- upgrade dependencies ([3c42a71](https://github.com/pocket-id/pocket-id/commit/3c42a713ce91b4061ffcf86d92cbb19294359ff8) by @kmendell)
+
+**Full Changelog**: https://github.com/pocket-id/pocket-id/compare/v2.4.0...v2.5.0
+
+
+## v2.4.0 - 2026-03-07
+
+[Release](https://github.com/pocket-id/pocket-id/releases/tag/v2.4.0)
+
+
+### Bug Fixes
+
+- improve wildcard matching by using `go-urlpattern` ([#1332](https://github.com/pocket-id/pocket-id/pull/1332) by @stonith404)
+- federated client credentials not working if sub ≠ client_id ([#1342](https://github.com/pocket-id/pocket-id/pull/1342) by @ItalyPaleAle)
+- handle IPv6 addresses in callback URLs ([#1355](https://github.com/pocket-id/pocket-id/pull/1355) by @ItalyPaleAle)
+- wildcard callback URLs blocked by browser-native URL validation ([#1359](https://github.com/pocket-id/pocket-id/pull/1359) by @Copilot)
+- one-time-access-token route should get user ID from URL only ([#1358](https://github.com/pocket-id/pocket-id/pull/1358) by @ItalyPaleAle)
+- various fixes in background jobs ([#1362](https://github.com/pocket-id/pocket-id/pull/1362) by @ItalyPaleAle)
+- use URL keyboard type for callback URL inputs ([a675d07](https://github.com/pocket-id/pocket-id/commit/a675d075d1ab9b7ff8160f1cfc35bc0ea1f1980a) by @stonith404)
+
+### Features
+
+- allow first name and display name to be optional ([#1288](https://github.com/pocket-id/pocket-id/pull/1288) by @taoso)
+
+### Other
+
+- bump svelte from 5.53.2 to 5.53.5 in the npm_and_yarn group across 1 directory ([#1348](https://github.com/pocket-id/pocket-id/pull/1348) by @dependabot[bot])
+- bump @sveltejs/kit from 2.53.0 to 2.53.3 in the npm_and_yarn group across 1 directory ([#1349](https://github.com/pocket-id/pocket-id/pull/1349) by @dependabot[bot])
+- update AAGUIDs ([#1354](https://github.com/pocket-id/pocket-id/pull/1354) by @github-actions[bot])
+- add Português files ([01141b8](https://github.com/pocket-id/pocket-id/commit/01141b8c0f2e96a40fd876d3206e49a694fd12c4) by @kmendell)
+- add Latvian files ([e0fc4cc](https://github.com/pocket-id/pocket-id/commit/e0fc4cc01bd51e5a97e46aad78a493a668049220) by @kmendell)
+- fix wrong seed data ([e7bd66d](https://github.com/pocket-id/pocket-id/commit/e7bd66d1a77c89dde542b4385ba01dc0d432e434) by @stonith404)
+- fix wrong seed data in `database.json` ([f4eb8db](https://github.com/pocket-id/pocket-id/commit/f4eb8db50993edacd90e919b39a5c6d9dd4924c7) by @stonith404)
+
+### Performance Improvements
+
+- frontend performance optimizations ([#1344](https://github.com/pocket-id/pocket-id/pull/1344) by @ItalyPaleAle)
+
+**Full Changelog**: https://github.com/pocket-id/pocket-id/compare/v2.3.0...v2.4.0
+
+
+## v2.3.0 - 2026-02-23
+
+[Release](https://github.com/pocket-id/pocket-id/releases/tag/v2.3.0)
+
+
+### Bug Fixes
+
+- ENCRYPTION_KEY needed for version and help commands ([#1256](https://github.com/pocket-id/pocket-id/pull/1256) by @kmendell)
+- prevent deletion of OIDC provider logo for non admin/anonymous users ([#1267](https://github.com/pocket-id/pocket-id/pull/1267) by @HiMoritz)
+- add `type="url"` to url inputs ([bb7b0d5](https://github.com/pocket-id/pocket-id/commit/bb7b0d56084df49b6a003cc3eaf076884e2cbf60) by @stonith404)
+- increase rate limit for frontend and api requests ([aab7e36](https://github.com/pocket-id/pocket-id/commit/aab7e364e85f1ce13950da93cc50324328cdd96d) by @stonith404)
+- decode URL-encoded client ID and secret in Basic auth ([#1263](https://github.com/pocket-id/pocket-id/pull/1263) by @ypomortsev)
+- token endpoint must not accept params as query string args ([#1321](https://github.com/pocket-id/pocket-id/pull/1321) by @ItalyPaleAle)
+- left align input error messages ([b3fe143](https://github.com/pocket-id/pocket-id/commit/b3fe14313684f9d8c389ed93ea8e479e3681b5c6) by @stonith404)
+- disallow API key renewal and creation with API key authentication ([#1334](https://github.com/pocket-id/pocket-id/pull/1334) by @stonith404)
+
+### Features
+
+- add VERSION_CHECK_DISABLED environment variable ([#1254](https://github.com/pocket-id/pocket-id/pull/1254) by @dihmandrake)
+- add support for HTTP/2 ([56afebc](https://github.com/pocket-id/pocket-id/commit/56afebc242be7ed14b58185425d6445bf18f640a) by @stonith404)
+- manageability of uncompressed geolite db file ([#1234](https://github.com/pocket-id/pocket-id/pull/1234) by @gucheen)
+- add JWT ID for generated tokens ([#1322](https://github.com/pocket-id/pocket-id/pull/1322) by @imnotjames)
+- current version api endpoint ([#1310](https://github.com/pocket-id/pocket-id/pull/1310) by @kmendell)
+
+### Other
+
+- bump @sveltejs/kit from 2.49.2 to 2.49.5 in the npm_and_yarn group across 1 directory ([#1240](https://github.com/pocket-id/pocket-id/pull/1240) by @dependabot[bot])
+- bump svelte from 5.46.1 to 5.46.4 in the npm_and_yarn group across 1 directory ([#1242](https://github.com/pocket-id/pocket-id/pull/1242) by @dependabot[bot])
+- bump devalue to 5.6.2 ([9dbc02e](https://github.com/pocket-id/pocket-id/commit/9dbc02e56871b2de6a39c443e1455efc26a949f7) by @kmendell)
+- upgrade deps ([4811625](https://github.com/pocket-id/pocket-id/commit/4811625cdd64b47ea67b7a9b03396e455896ccd6) by @kmendell)
+- add Estonian files ([53ef61a](https://github.com/pocket-id/pocket-id/commit/53ef61a3e5c4b77edec49d41ab94302bfec84269) by @kmendell)
+- update AAGUIDs ([#1257](https://github.com/pocket-id/pocket-id/pull/1257) by @github-actions[bot])
+- add Norwegian language files ([80558c5](https://github.com/pocket-id/pocket-id/commit/80558c562533e7b4d658d5baa4221d8cd209b47d) by @stonith404)
+- run formatter ([60825c5](https://github.com/pocket-id/pocket-id/commit/60825c5743b0e233ab622fd4d0ea04eb7ab59529) by @kmendell)
+- bump axios from 1.13.2 to 1.13.5 in the npm_and_yarn group across 1 directory ([#1309](https://github.com/pocket-id/pocket-id/pull/1309) by @dependabot[bot])
+- update dependenicies ([94a4897](https://github.com/pocket-id/pocket-id/commit/94a48977ba24e099b6221838d620c365eb1d4bf4) by @kmendell)
+- update AAGUIDs ([#1316](https://github.com/pocket-id/pocket-id/pull/1316) by @github-actions[bot])
+- bump svelte from 5.46.4 to 5.51.5 in the npm_and_yarn group across 1 directory ([#1324](https://github.com/pocket-id/pocket-id/pull/1324) by @dependabot[bot])
+- bump @sveltejs/kit from 2.49.5 to 2.52.2 in the npm_and_yarn group across 1 directory ([#1327](https://github.com/pocket-id/pocket-id/pull/1327) by @dependabot[bot])
+- upgrade dependencies ([0678699](https://github.com/pocket-id/pocket-id/commit/0678699d0cce5448c425b2c16bedab5fc242cbf0) by @stonith404)
+- upgrade to node 24 and go 1.26.0 ([#1328](https://github.com/pocket-id/pocket-id/pull/1328) by @kmendell)
+
+**Full Changelog**: https://github.com/pocket-id/pocket-id/compare/v2.2.0...v2.3.0
+
+
 ## v2.2.0 - 2026-01-11
 
 [Release](https://github.com/pocket-id/pocket-id/releases/tag/v2.2.0)
